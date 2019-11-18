@@ -1,15 +1,18 @@
+// Spring boot static folder path
+const STATIC = './src/main/resources/static'
+
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const sass = require('gulp-sass');
 const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
 
-let sassTaskHandler = () => gulp.src('./src/scss/**/*.scss', { sourcemaps: true })
+let sassTaskHandler = () => gulp.src(`${STATIC}/src/scss/**/*.scss`, { sourcemaps: true })
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(concat('styles.css'))
-    .pipe(gulp.dest('./css'));
+    .pipe(gulp.dest(`${STATIC}/css`));
 
-let babelTaskHandler = () => gulp.src('./src/js/**/*.js', { sourcemaps: true })
+let babelTaskHandler = () => gulp.src(`${STATIC}/src/js/**/*.js`, { sourcemaps: true })
     .pipe(babel({
         presets: ['@babel/env']
     }))
@@ -18,17 +21,17 @@ let babelTaskHandler = () => gulp.src('./src/js/**/*.js', { sourcemaps: true })
       this.emit('end');
     })
     .pipe(uglify())
-    .pipe(concat('main.js'))
-    .pipe(gulp.dest('./js'));
+    .pipe(concat('bundle.js'))
+    .pipe(gulp.dest(`${STATIC}/js`));
 
 // Tasks
 gulp.task('sass', sassTaskHandler);
-gulp.task('sass:watch', () => gulp.watch('./src/scss/**/*.scss', sassTaskHandler));
+gulp.task('sass:watch', () => gulp.watch(`${STATIC}/src/scss/**/*.scss`, sassTaskHandler));
 
 gulp.task('babel', babelTaskHandler);
-gulp.task('babel:watch', () => gulp.watch('./src/js/**/*.js', babelTaskHandler));
+gulp.task('babel:watch', () => gulp.watch(`${STATIC}/src/js/**/*.js`, babelTaskHandler));
 
 gulp.task('watch', () => {
-  gulp.watch('./src/scss/**/*.scss', sassTaskHandler);
-  gulp.watch('./src/js/**/*.js', babelTaskHandler);
+  gulp.watch(`${STATIC}/src/scss/**/*.scss`, sassTaskHandler);
+  gulp.watch(`${STATIC}/src/js/**/*.js`, babelTaskHandler);
 });

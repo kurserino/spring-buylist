@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import com.pickles.buylist.model.Item;
 import com.pickles.buylist.repository.ItemRepository;
 
+
 @RestController
 public class ItemController
 {
@@ -46,6 +47,7 @@ public class ItemController
 		if (optionalEmp.isPresent()) {
 			Item emp = optionalEmp.get();
 			emp.setName(newItem.getName());
+			emp.setQty(newItem.getQty());
 			emp.setDone(newItem.getDone());
 			emp.setCreatedAt(newItem.getCreatedAt());
 			itemRepository.save(emp);
@@ -64,7 +66,7 @@ public class ItemController
 	public Item addItem(@RequestBody Item newItem)
 	{
 		String id = String.valueOf(new Random().nextInt());
-		Item emp = new Item(id, newItem.getName(), newItem.getDone(), newItem.getCreatedAt());
+		Item emp = new Item(id, newItem.getName(), newItem.getQty(), newItem.getDone(), newItem.getCreatedAt());
 		itemRepository.save(emp);
 		return emp;
 	}

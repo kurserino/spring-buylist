@@ -1,6 +1,5 @@
 package com.pickles.buylist.model;
 
-
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
@@ -16,6 +15,7 @@ public class Item {
 	@PrimaryKey
 	private @NonNull String id;
 	private @NonNull String name;
+	private @NonNull String qty;
 	private @NonNull String done;
 	private @NonNull String createdAt;
 }

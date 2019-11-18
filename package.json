@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "install": "mvn dependency:resolve"
+    "build": "gulp sass && gulp babel",
+    "install": "mvn dependency:resolve && npm run build",
+    "start": "npm run build && mvn spring-boot:run"
   },
   "dependencies": {
     "@babel/cli": "^7.2.3",

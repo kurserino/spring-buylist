@@ -36,6 +36,13 @@ h1 {
       border-bottom: 0;
     }
 
+    &.isDone {
+      input {
+        text-decoration: line-through;
+        opacity: 0.4;
+      }
+    }
+
     .col.checkWrapper {}
 
     .col.nameWrapper {
@@ -58,17 +65,34 @@ h1 {
         transform: translateY(-50%);
       }
     }
+    // @media screen and (min-width: 771px) {
+      &:not(.isFocus){
+        .col.nameWrapper {
+          .removeButton {
+            opacity: 0;
+          }
+        }
+      }
+      &:hover {
+        .col.nameWrapper {
+          .removeButton {
+            opacity: 1;
+          }
+        }
+      }
+    // }
 
     &.lastItem {
-      .col.checkWrapper{
-        input{
-          opacity: .4;
+      .col.checkWrapper {
+        input {
+          opacity: 0.4;
           pointer-events: none;
         }
       }
+
       .col.nameWrapper {
         .removeButton {
-          display: none;
+          display: none !important;
         }
       }
     }

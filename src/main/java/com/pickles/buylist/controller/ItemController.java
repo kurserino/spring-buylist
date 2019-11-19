@@ -47,7 +47,6 @@ public class ItemController
 		if (optionalEmp.isPresent()) {
 			Item emp = optionalEmp.get();
 			emp.setName(newItem.getName());
-			emp.setQty(newItem.getQty());
 			emp.setDone(newItem.getDone());
 			emp.setCreatedAt(newItem.getCreatedAt());
 			itemRepository.save(emp);
@@ -63,10 +62,10 @@ public class ItemController
 	}
 
 	@PostMapping("/item")
-	public Item addItem(@RequestBody Item newItem)
+	public Item addItem(Item newItem)
 	{
-		String id = String.valueOf(new Random().nextInt());
-		Item emp = new Item(id, newItem.getName(), newItem.getQty(), newItem.getDone(), newItem.getCreatedAt());
+		// String id = String.valueOf(new Random().nextInt());
+		Item emp = new Item(newItem.getId(), newItem.getName(), newItem.getDone(), newItem.getCreatedAt());
 		itemRepository.save(emp);
 		return emp;
 	}

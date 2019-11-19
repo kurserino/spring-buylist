@@ -15,7 +15,6 @@ public class Item {
 	@PrimaryKey
 	private @NonNull String id;
 	private @NonNull String name;
-	private @NonNull String qty;
 	private @NonNull String done;
 	private @NonNull String createdAt;
 }
